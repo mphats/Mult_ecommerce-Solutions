@@ -1,0 +1,120 @@
+﻿@model Mult_ecommerce.Models.ViewAdModel
+@{
+    ViewBag.Title = "ViewAds";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<div class="col-md-2"></div>
+<div class="col-lg-10 col-md-10 col-sm-12">
+    <div class="card-header"><h3 class="text-success fw-bold text-center">Product Description</h3></div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <tr>
+                    <td>
+                        <div class="m-4 border-2 d-inline-flex w-75" style="border-radius: 24px; margin-left:20px;">
+                            <img src="@Url.Content(Model.Pro_image)" class="card-img-top" height="230" />
+                        </div>
+                    </td>
+
+                    <td>
+                        <table class="table table-striped w-75">
+                            <tr>
+
+                                <td>
+                                    Name:
+                                </td>
+                                <td class="text-muted">
+                                    @Model.Pro_name
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <td>
+                                    Price:
+                                </td>
+                                <td class="text-info">
+                                    @Model.Pro_price
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    Information:
+                                </td>
+                                <td class="text-info">
+                                    @Model.Pro_des
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    Category:
+                                </td>
+                                <td class="text-info">
+                                    @Model.Cat_name
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    Name:
+                                </td>
+                                <td class="text-info">
+                                    @Model.U_name
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    Contact:
+                                </td>
+                                <td class="text-info">
+                                    @Model.U_contact
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    Email:
+                                </td>
+                                <td class="text-info">
+                                    @Model.U_email
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">
+                                    <div class="m-4 border-2 d-inline-flex w-75" style="border-radius: 24px; margin-left:20px;">
+                                        <label for="imgfile">Images</label>
+                                        <img src="@Url.Content(Model.U_image)" class="card-img-top" width="150" height="230" />
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-header bg-light">
+            <table class="table">
+                <tr>
+                    <td>
+                        @if (Convert.ToInt32(Session["ID"]) == Convert.ToInt32(Model.Pro_fk_user))
+                        {
+                            @Html.ActionLink("Delete Ad", "DeletedAd", new { id = Model.ID }, new { @class = "btn btn-danger" })
+                        }
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("close Ad", "Index", new { Page = Request["page"] }, new { @class = "btn btn-danger" })
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

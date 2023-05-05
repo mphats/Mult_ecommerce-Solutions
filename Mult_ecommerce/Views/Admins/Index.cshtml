@@ -1,0 +1,61 @@
+﻿@model Mult_ecommerce.Models.Admin
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MakertingLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="b-example-divider"></div>
+
+    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                    <h1 class="fw-bold mb-0 fs-2">Login</h1>
+                    @Html.ValidationSummary(true, "Fix these errors", new { @class = "text-danger" })
+                    <span class="text-danger">@ViewBag.error</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <div class="input-group mt-2">
+                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Username" })
+                            @Html.ValidationMessageFor(model => model.Username, " ", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="input-group mt-1">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Log In</button>
+                        </div>
+                        <br />
+                        @Html.ActionLink("Register", "Register")
+
+                        <hr class="my-4">
+                        <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                        <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-3" type="submit">
+                            <svg class="bi me-1" width="16" height="16"><use xlink:href="#twitter" /></svg>
+                            Log in with Twitter
+                        </button>
+                        <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+                            <svg class="bi me-1" width="16" height="16"><use xlink:href="#facebook" /></svg>
+                            Log in with Facebook
+                        </button>
+                        <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+                            <svg class="bi me-1" width="16" height="16"><use xlink:href="#github" /></svg>
+                            Log in with GitHub
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

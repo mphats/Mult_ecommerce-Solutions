@@ -1,0 +1,54 @@
+﻿@model Mult_ecommerce.Models.Product
+@{
+    ViewBag.Title = "CreateAds";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@using (Html.BeginForm("CreateAds", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-4 mb-5"></div>
+        <div class="col-md-4 mb-5">
+            <span class="display-6 fw-bold text-danger text-center mb-5">Add Products</span>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <span class="text-danger">@ViewBag.error</span>
+
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.Pro_fk_cat, ViewBag.categoryList as SelectList, "----Select----",new { htmlAttributes = new { @class = "form-control", @placeholder = "Categories" } })
+                @Html.ValidationMessageFor(model => model.Pro_fk_cat, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="imgfile">Product Name</label>
+                @Html.EditorFor(model => model.Pro_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Product name" } })
+                @Html.ValidationMessageFor(model => model.Pro_name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+
+                <label for="imgfile">Price</label>
+                @Html.EditorFor(model => model.Pro_price, new { htmlAttributes = new { @class = "form-control", @placeholder = "Price" } })
+                @Html.ValidationMessageFor(model => model.Pro_price, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="imgfile">Details</label>
+                @Html.EditorFor(model => model.Pro_des, new { htmlAttributes = new { @class = "form-control", @placeholder = "Information" } })
+                @Html.ValidationMessageFor(model => model.Pro_des, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="imgfile">Images</label>
+                <input type="file" id="imgfile" name="imgfile" class="form-control" required="required" />
+                @Html.ValidationMessageFor(model => model.Pro_image, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Post Ad</button>
+            </div>
+        </div>
+    </div>
+
+
+}
+

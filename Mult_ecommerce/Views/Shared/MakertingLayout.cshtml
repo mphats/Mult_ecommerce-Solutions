@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/js/bootstrap.bundle.js"></script>
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap" /></svg>
+                    TK COMMERCE
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        @if (Session["ID"] == null)
+                        {
+                            @Html.ActionLink("Category", "CreateCategory", "Admin", null, new { @class = "nav-link" })
+                        }
+                    </li>
+                    <li>
+
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-2 text-white">Pricing</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-2 text-white">FAQs</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-2 text-white">About</a>
+                    </li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2">
+                        @if (Session["ID"] == null)
+                        {
+                            @Html.ActionLink("Sign Up", "Index", "Admins", null, new { @class = "nav-link" })
+                        }
+                    </button>
+                    <button type="button" class="btn btn-warning">
+                        @if (Session["ID"] == null)
+                        {
+                            @Html.ActionLink("Register", "Register", "Admins", null, new { @class = "nav-link" })
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            @RenderBody()
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center card-footer">
+                <footer>
+                    <p>&copy;@DateTime.Now.Year - TK COMMERCE</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

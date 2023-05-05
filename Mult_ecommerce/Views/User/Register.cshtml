@@ -1,0 +1,58 @@
+﻿@model Mult_ecommerce.Models.Tb_user
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="b-example-divider"></div>
+
+    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                    <h1 class="fw-bold mb-0 fs-2">Sign in</h1>
+                    @Html.ValidationSummary(true, "Fix these errors", new { @class = "text-danger" })
+                    <span class="text-danger">@ViewBag.error</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <div class="input-group mt-2">
+                            @Html.TextBoxFor(model => model.U_name, new { @class = "form-control", @placeholder = "Username" })
+                            @Html.ValidationMessageFor(model => model.U_name, " ", new { @class = "text-danger" })
+                        </div>
+                        <div class="input-group mt-2">
+                            @Html.TextBoxFor(model => model.U_email, new { @class = "form-control", @placeholder = "email" })
+                            @Html.ValidationMessageFor(model => model.U_email, " ", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="input-group mt-1">
+                            @Html.PasswordFor(model => model.U_password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.U_password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input-group mt-1">
+                            @Html.TextBoxFor(model => model.U_contact, new { @class = "form-control", @placeholder = "Contact" })
+                            @Html.ValidationMessageFor(model => model.U_contact, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="input-group mt-1">
+                            <input type="file" id="imgfile" name="imgfile" class="form-control" required="required" />
+                            @Html.ValidationMessageFor(model => model.U_image, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="input-group mt-2">
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign In</button>
+                        </div>
+                        <br />
+                        @Html.ActionLink("Login", "Login")
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

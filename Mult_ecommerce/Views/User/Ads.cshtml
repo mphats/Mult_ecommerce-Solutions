@@ -1,0 +1,29 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Mult_ecommerce.Models.Product>
+@{
+    ViewBag.Title = "Ads";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<p class="display-6 text-center fw-bold text-danger">Available Ads</p>
+@if (Model != null)
+{
+    int x = 0;
+    foreach (var product in Model)
+    {
+        x++;
+        <div class="col-lg-3 col-md-4 col-sm-12 mt-3">
+            <div class="card-container card m-4 border-0 d-flex w-75" style="border-radius: 24px; margin-left:20px;">
+                <img src="@Url.Content(product.Pro_image)" class="card-img-top" height="230" />
+                <h4 class="text-danger text-center fw-bold text-decoration-none">@Html.ActionLink(product.Pro_name, "ViewAds", new { id = product.ID }, new { @class = "text-denger text-center fw-bold text-decolation-none" })</h4>
+            </div>
+        </div>
+    }
+    <h3 class="text-success">@x result(s) found</h3>
+}
+<div class="text-center mt-4">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Ads", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
+
